@@ -1,5 +1,6 @@
 // add DOM Element Objects
 let timeLeftEl = document.getElementById("time-left");
+let startGameEl = document.getElementById("start-game");
 
 //Quiz quizQuestions object
 let quizQuestions = [
@@ -32,7 +33,7 @@ let quizQuestions = [
 
 // add variables
 let score = 0;
-let currentQuestion = -1;
+let currentQuestion = 0;
 let timer = "";
 
 //add startGame function
@@ -49,5 +50,33 @@ let timeLeft = setInterval(function() {
         clearInterval(timeLeft);
     }
   }, 1000);
+
+  nextQuestion();
+};
+
+// Use nextQuestion() function
+let nextQuestion = function() {
+    currentQuestion;
+
+    if (currentQuestion > quizQuestions.length - 1) {
+
+    }
+
+    let content = "<h3>" + quizQuestions[currentQuestion].question + "</h3>";
+
+    for (let i = 0; i < quizQuestions[currentQuestion].options.length; i++) {
+        let buttonContent = "<button onclick=\"[Answer]\">[Options]</button>";
+        let quizOptions = buttonContent.replace("[Options]", quizQuestions[currentQuestion].options[i]);
+        let quizAnswer = quizQuestions[currentQuestion].answer;
+        buttonContent = quizOptions;
+
+        if (quizOptions === quizAnswer) {
+            buttonContent = buttonContent.repeat("[Answer]", "correct()");
+        } else {
+            buttonContent = buttonContent.replace("[Answer]", "incorrect()");
+        }
+        content += buttonContent;
+    }
+    startGameEl.innerHTML = content;
 };
 
