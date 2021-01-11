@@ -33,7 +33,7 @@ let quizQuestions = [
 
 // add variables
 let score = 0;
-let currentQuestion = 0;
+let currentQuestion = -1;
 let timer = "";
 
 //add startGame function
@@ -48,6 +48,7 @@ let timeLeft = setInterval(function() {
 
     if (score <= 0) {
         clearInterval(timeLeft);
+        endGame();
     }
   }, 1000);
 
@@ -56,27 +57,53 @@ let timeLeft = setInterval(function() {
 
 // Use nextQuestion() function
 let nextQuestion = function() {
-    currentQuestion;
+    currentQuestion++;
 
     if (currentQuestion > quizQuestions.length - 1) {
-
+        endGame();
+        return;
     }
 
     let content = "<h3>" + quizQuestions[currentQuestion].question + "</h3>";
 
     for (let i = 0; i < quizQuestions[currentQuestion].options.length; i++) {
-        let buttonContent = "<button onclick=\"[Answer]\">[Options]</button>";
-        let quizOptions = buttonContent.replace("[Options]", quizQuestions[currentQuestion].options[i]);
+        let buttonContent = "<button style='display:block; margin:5px;' onclick=\"[Answer]\">[Options]</button>";
         let quizAnswer = quizQuestions[currentQuestion].answer;
-        buttonContent = quizOptions;
+        let quizOptions = quizQuestions[currentQuestion].options[i];
+        buttonContent = buttonContent.replace("[Options]", quizQuestions[currentQuestion].options[i]);
 
         if (quizOptions === quizAnswer) {
-            buttonContent = buttonContent.repeat("[Answer]", "correct()");
+            buttonContent = buttonContent.replace("[Answer]", "correctAnswer()");
         } else {
-            buttonContent = buttonContent.replace("[Answer]", "incorrect()");
+            buttonContent = buttonContent.replace("[Answer]", "incorrectAnswer()");
         }
         content += buttonContent;
     }
     startGameEl.innerHTML = content;
+};
+
+// Use the function if answer is correct
+let correctAnswer = function() {
+    alert("Your Answer is Correct. You'll get 5 more Points");
+    score += 5;
+    nextQuestion();
+};
+
+// Use the function if answer is incorrect
+let incorrectAnswer = function() {
+    alert("Your Answer is Incorrect. It will subtract 15 points from your Score");
+    score -= 15;
+    nextQuestion();
+};
+
+// Use endGame() function 
+let endGame = function() {
+    clearInterval(timeLeft);
+
+    let quizContent = `<h2>Game Over!</h2>
+    <h3 style="padding: 20px; ">That means you got ` + score + ` Score</h3>
+    <input type="text" name="name id="name" placeholder="Enter Initials (maximum 5 letters)" minlength="2" maxlength="10" size="50" style="display:block; font-size:25px; padding:20px; text-align: center"><br /><br />
+    <button onclick="setScore()">Set score!</button>`;
+    startGameEl.innerHTML = quizContent;
 };
 
