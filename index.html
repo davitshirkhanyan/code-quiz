@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Code Quiz</title>
+</head>
+<body>
+    <!-- add header -->
+    <header>
+            <div>
+                <!-- add button for High Scores -->
+                <button onclick="getHighScore()">View High Scores</button>
+            </div>
+
+            <!-- add timer section -->
+            <div>
+                <!-- countdown timer -->
+                <h3>Time Remaining: <span id="time-left">0</span></h3>
+            </div>
+    </header>
+
+    <!-- add main section -->
+    <main>
+        <div id="start-game">
+            <h1>Code Quiz!</h1>
+            <h3>Answer all the questions before the timer runs out! <br /> If you answer correct, you'll get 5 more points, if you answer incorrect it will subtract 15 points from the score</h3>
+            <!-- add start the game button -->
+            <button onclick="startGame()">Start Quiz</button>
+        </div>
+    </main>
+
+    <!-- add footer -->
+    <footer>
+        <h2>Made by Davit Shirkhanyan</h2>
+        &copy; 2021 Code Quiz
+    </footer>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
