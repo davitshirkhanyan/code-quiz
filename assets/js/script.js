@@ -34,6 +34,7 @@ let quizQuestions = [
 // add variables
 let score = 0;
 let currentQuestion = -1;
+let timeLeft = "";
 
 //add startGame function
 let startGame = function() {
@@ -41,7 +42,7 @@ let startGame = function() {
     timeLeftEl.innerHTML = score;
 
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-let timeLeft = setInterval(function() {
+    timeLeft = setInterval(function() {
     score--;
     timeLeftEl.innerHTML = score;
 
@@ -98,24 +99,56 @@ let incorrectAnswer = function() {
 // Use endGame() function 
 let endGame = function() {
     clearInterval(timeLeft);
+    let inputText = `<input type="text" id="name" placeholder="Enter Initials (2 to 5 characters)" minlength="2" maxlength="5" size="50" style="display:block; font-size:25px; padding:20px; text-align: center" required><br /><br />`
+    let quizContent = `<h3 style="padding: 20px;">Your Score is ` + score + `</h3>` + inputText + `<button onclick="setHighScore()">Submit</button>`;
+    if (score <= 20) {
+        quizContent =`<h2>Game Over! Try Again! 😔 </h2>` + quizContent; 
+    } else if (score > 20 && score <= 50) {
+        quizContent = `<h2>You could do better 😉 </h2>` + quizContent;
+    } else {
+        quizContent = `<h2>Congratulations! 😀 </h2>` + quizContent;
+    }
 
-    let quizContent = `<h2>Game Over!</h2>
-    <h3 style="padding: 20px; ">That means you got ` + score + ` Score</h3>
-    <input type="text" name="name id="name" placeholder="Enter Initials (maximum 5 letters)" minlength="2" maxlength="10" size="50" style="display:block; font-size:25px; padding:20px; text-align: center"><br /><br />
-    <button onclick="setScore()">Set score!</button>`;
     startGameEl.innerHTML = quizContent;
 };
 
 // Use the function to reset the game
 let resetGame = function() {
+    clearInterval(timeLeft);
     score = 0;
     currentQuestion = -1;
-    timeLeftEl = score;
 
     let quizContent = `<h1>Code Quiz!</h1>
-<h3>Answer all the questions before the timer runs out! If you answer correct, you'll get 5 more points, if you answer incorrect it will subtract 15 points from the score</h3>
+<h3>Answer all the questions before the timer runs out! <br /> If you answer correct, you'll get 5 more points, if you answer incorrect it will subtract 15 points from the score</h3>
 <button onclick="startGame()">Start Quiz</button>`;
 
 startGameEl.innerHTML = quizContent;
 };
+
+// save highscore in local storage
+let setHighScore = function() {
+    localStorage.setItem("highScore", score);
+    localStorage.setItem("highScoreName", document.getElementById('name').value);
+    getHighScore();
+
+};
+
+// get highscore from local storage
+let getHighScore = function() {
+    let quizContent = 
+    `<h3>` + localStorage.getItem("highScoreName") + ` your Score is:</h3>
+    <h2>` + localStorage.getItem("highScore") + `</h2>
+    <br /> <br />
+    <button style="display: block" onclick="clearHighScore()">Clear High Score!</button><button onclick="resetGame()">Go Back!</button>`
+
+    startGameEl.innerHTML = quizContent;
+};
+
+// Use clear function to clear highscore
+function clearHighScore() {
+    localStorage.setItem("highScore", "");
+    localStorage.setItem("highScoreName",  "");
+};
+
+
 

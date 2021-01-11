@@ -9,21 +9,21 @@
 </head>
 <body>
     <!-- add header -->
-    <header id="header">
-            <div class="scores">
+    <header>
+            <div>
                 <!-- add button for High Scores -->
-                <button id="high-scores" onclick="viewHighScores()">View High Scores</button>
+                <button onclick="getHighScore()">View High Scores</button>
             </div>
 
             <!-- add timer section -->
-            <div class="time">
+            <div>
                 <!-- countdown timer -->
                 <h3>Time Remaining: <span id="time-left">0</span></h3>
             </div>
     </header>
 
     <!-- add main section -->
-    <main id="container">
+    <main>
         <div id="start-game">
             <h1>Code Quiz!</h1>
             <h3>Answer all the questions before the timer runs out! <br /> If you answer correct, you'll get 5 more points, if you answer incorrect it will subtract 15 points from the score</h3>
