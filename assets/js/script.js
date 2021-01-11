@@ -149,6 +149,3 @@ function clearHighScore() {
     localStorage.setItem("highScore", "");
     localStorage.setItem("highScoreName",  "");
 };
-
-
-
