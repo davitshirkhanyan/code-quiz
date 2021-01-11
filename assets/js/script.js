@@ -34,7 +34,6 @@ let quizQuestions = [
 // add variables
 let score = 0;
 let currentQuestion = -1;
-let timer = "";
 
 //add startGame function
 let startGame = function() {
@@ -105,5 +104,18 @@ let endGame = function() {
     <input type="text" name="name id="name" placeholder="Enter Initials (maximum 5 letters)" minlength="2" maxlength="10" size="50" style="display:block; font-size:25px; padding:20px; text-align: center"><br /><br />
     <button onclick="setScore()">Set score!</button>`;
     startGameEl.innerHTML = quizContent;
+};
+
+// Use the function to reset the game
+let resetGame = function() {
+    score = 0;
+    currentQuestion = -1;
+    timeLeftEl = score;
+
+    let quizContent = `<h1>Code Quiz!</h1>
+<h3>Answer all the questions before the timer runs out! If you answer correct, you'll get 5 more points, if you answer incorrect it will subtract 15 points from the score</h3>
+<button onclick="startGame()">Start Quiz</button>`;
+
+startGameEl.innerHTML = quizContent;
 };
 
