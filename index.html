@@ -12,7 +12,7 @@
     <header id="header">
             <div class="scores">
                 <!-- add button for High Scores -->
-                <button id="high-scores" onclick="">View High Scores</button>
+                <button id="high-scores" onclick="viewHighScores()">View High Scores</button>
             </div>
 
             <!-- add timer section -->
@@ -26,9 +26,9 @@
     <main id="container">
         <div id="start-game">
             <h1>Code Quiz!</h1>
-            <h3>Answer all the questions before the timer runs out!</h3>
+            <h3>Answer all the questions before the timer runs out! <br /> If you answer correct, you'll get 5 more points, if you answer incorrect it will subtract 15 points from the score</h3>
             <!-- add start the game button -->
-            <button onclick="">Start the Quiz</button>
+            <button onclick="startGame()">Start Quiz</button>
         </div>
     </main>
 

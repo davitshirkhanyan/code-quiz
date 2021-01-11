@@ -1,8 +1,11 @@
-//Quiz Questions object
+// add DOM Element Objects
+let timeLeftEl = document.getElementById("time-left");
+
+//Quiz quizQuestions object
 let quizQuestions = [
     {
         question: "What is the correct way to write a JavaScript array?",
-        options: ["var colors = ['red', 'green', 'blue']", "var colors = 'red', 'green', 'blue'", "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')", "var colors = (1:'red', 2:'green', 3:'blue')"],
+        options: ["var colors = 'red', 'green', 'blue'", "var colors = ['red', 'green', 'blue']", "var colors = 1 = ('red'), 2 = ('green'), 3 = ('blue')", "var colors = (1:'red', 2:'green', 3:'blue')"],
         answer: "var colors = ['red', 'green', 'blue']"  
     },
     {
@@ -12,7 +15,7 @@ let quizQuestions = [
     },
     {
         question: "Which operator is used to assign a value to a variable?",
-        options: ["=", "-", "*", "x"],
+        options: ["-", "*", "=", "x"],
         answer: "="
     },
     {
@@ -26,3 +29,25 @@ let quizQuestions = [
         answer: "for (i = 0; i <= 5; i++)"
      }
 ];
+
+// add variables
+let score = 0;
+let currentQuestion = -1;
+let timer = "";
+
+//add startGame function
+let startGame = function() {
+    score = 75;
+    timeLeftEl.innerHTML = score;
+
+    // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+let timeLeft = setInterval(function() {
+    score--;
+    timeLeftEl.innerHTML = score;
+
+    if (score <= 0) {
+        clearInterval(timeLeft);
+    }
+  }, 1000);
+};
+
